@@ -1,0 +1,490 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>BDSD netwerkstructuren</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+		  <div class="slides">
+		    <section>
+
+		      <section>
+			    <h1>Introductie</h1>
+			    <p>De relevantie van Big Data</p>
+			    <p>
+			      <img src="gfx/yellowpages.png"/>
+			      <img src="gfx/startpagina.png"/>
+			    </p>
+			  </section>
+			  <section>
+			    <h2>Waarom speciale aandacht voor netwerken?</h2>
+			    <p>Netwerken zijn een bijzonder type van gestructureerde data.
+			    </p>
+			    <p>Netwerken representeren vaak juist gigantische datasets.</p>
+			    <p>Bij groei van data naar <strong>big data</strong> is <a href="https://roelanto.shinyapps.io/bigdata1/">intelligente analyse</a> een zinvolle oplossing.</p>
+			  </section>
+			  <section>
+			    <h2>Waar hebben we het over?</h2>
+			    <p>
+			      <img width="60%" class="stretch" src="gfx/networks.jpg"/>
+			      <ul style="width: 40%">
+				<li> Een node is een <strong>vertex</strong></li>
+				<li> Een verbinding is een <strong>edge</strong></li>
+			      </ul>
+			    </p>
+			  </section>
+			  <section>
+			    <h2>Voorbeeld 1: Nagasaki Bus Company (Nass 2016)</h2>
+			    <p>Afstudeerproject: maak een routeplanner die ondersteuning biedt voor overstappen.
+			      <img class="stretch" src="gfx/nagasaki.png"/><br/>
+			    </p>
+			  </section>
+			  <section>
+			    <h2>Voorbeeld 2: Datumprikker voor eetafspraken (Arragon, 2015)</h2>
+			    <p>Afstudeerproject: maak het mogelijk om gezamenlijk een etentje te plannen, een 'intelligente' <a href="www.datumprikker.nl">datumprikker.nl</a>.
+			    </p>
+			      <img class="stretch" src="gfx/eatinggroup1.png"/>
+			  </section>
+			  <section>
+			    <h2>Voorbeeld 2: Datumprikker voor eetafspraken (Arragon, 2015)</h2>
+			    <div style="width: 40%; float:right;">
+			    <p>Een <strong>afspraak</strong> is een edge tussen persoon en tijdstip.
+			    </p>
+			    </div>
+			    <div style="width: 40%; float: left;">
+			      <img class="stretch" src="gfx/eatinggroup2.png"/>
+			    </div>
+			  </section>
+			  <section>
+			    <h2>Voorbeeld 3: Indexeer het World Wide Web</h2>
+			    
+			    <div style="width: 40%; float:right;">
+			      Google
+			    </div>
+			    <div style="width: 40%; float:right;">
+			      Yahoo
+			    </div>
+			  </section>
+			    
+			    
+		    </section>
+
+		    <section>
+		      <section><h1>PageRank - voorbeeld</h1>
+							      <a href="https://lintool.github.io/MapReduceAlgorithms/MapReduce-book-final.pdf">Lin & Dyer (2010) "Data-Intensitive Text Processing with map Reduce"</a>, hoofdstuk 10</section>
+		      <section>
+			<h2>Oorspronkelijke vraag</h2>
+			Hoe kunnen websites gesorteerd worden op basis van hun betrouwbaarheid dmv <a href="http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf">PageRank</a>?
+			<blockquote style="width:960px;">
+			  Web pages vary greatly in terms of the number of backlinks they have. (...) Generally, highly linked pages are more important than pages with few links.
+			  (...)
+			  PageRank is an attempt to see how good an approximation to importance can be obtained from just the link structure.
+			</blockquote>
+			    
+		      </section>
+		      <section>
+			<h2>Intuïtie</h2>
+			<p>
+			  Welk wegdeel is het drukst?<br/>
+			  <a href="https://b.socrative.com/">b.socrative.com</a> room <strong>ABE1A2CB</strong>
+			</p>			
+			<img class="stretch" src="gfx/nijmegen.png"/>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 1</h2>
+			<img class="stretch" src="gfx/pagerank1.svg"/>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 2a</h2>
+			<img class="stretch" src="gfx/pagerank2a.svg"/>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 2b</h2>
+			<img class="stretch" src="gfx/pagerank2b.svg"/>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 3</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank3a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank3b.svg"/>
+			</div>
+			</p>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 4</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank4a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank4b.svg"/>
+			</div>
+			</p>
+		      </section>
+		      <section>
+			<h2>Modelleren - stap 5</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank5a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank5b.svg"/>
+			</div>
+			</p>			  
+		    </section>
+		      <section>
+			<h2>Modelleren - stap 6</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank6a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank6b.svg"/>
+			</div>
+			</p>			  
+		    </section>
+		      <section>
+			<h2>Modelleren - stap 7</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank7a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank7b.svg"/>
+			</div>
+			</p>			  
+		    </section>
+		      <section>
+			<h2>Modelleren - stap 8</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank8a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank8b.svg"/>
+			</div>
+			</p>			  
+		    </section>
+		      <section>
+			<h2>Modelleren - stap 9</h2>
+			<p>
+			<div style="float: left; width: 50%">
+			  <img src="gfx/pagerank9a.svg"/>
+			</div>
+			<div style="float: right; width: 50%">
+			  <img  src="gfx/pagerank9b.svg"/>
+			</div>
+			</p>			  
+		    </section>
+		      <section>
+			<h2>Modelleren - stap 10</h2>
+			<p>
+			  <div style="float: left; width: 50%">
+			    <img src="gfx/pagerank10a.svg"/>
+			  </div>
+			  <div style="float: right; width: 50%">
+			    <img  src="gfx/pagerank10b.svg"/>
+			  </div>
+			</p>			  
+		      </section>
+		      <section>
+			<h2>Dead links</h2>
+			<p>
+			<p>
+			  <div style="float: left; width: 50%">
+			    <img src="gfx/pagerankdeadnode.svg"/>
+			  </div>
+			  <div class="fragment" style="float: right; width: 50%">
+			    
+			    <font size="5">
+			    <table>
+			      <thead>
+				<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+			      </thead>
+			      <tbody>
+				<tr><td>1</td><td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td></tr>
+				<tr><td>2</td><td> 0.07 </td> <td> 0.1 </td> <td> 0.17 </td> <td> 0.17 </td> <td> 0.3 </td></tr>
+				<tr><td>3</td><td> 0.06 </td> <td> 0.03 </td> <td> 0.14 </td> <td> 0.09 </td> <td> 0.18 </td></tr>
+				<tr><td>4</td><td> 0.03 </td> <td> 0.03 </td> <td> 0.1 </td> <td> 0.06 </td> <td> 0.1 </td></tr>
+				<tr><td>5</td><td> 0.02 </td> <td> 0.01 </td> <td> 0.07 </td> <td> 0.03 </td> <td> 0.08 </td></tr>
+				<tr><td>6</td><td> 0.01 </td> <td> 0.01 </td> <td> 0.05 </td> <td> 0.02 </td> <td> 0.05 </td></tr>
+				<tr><td>7</td><td> 0.01 </td> <td> 0.01 </td> <td> 0.03 </td> <td> 0.01 </td> <td> 0.03 </td></tr>
+				<tr><td>8</td><td> 0 </td> <td> 0 </td> <td> 0.02 </td> <td> 0.01 </td> <td> 0.02 </td></tr>
+			      </tbody>
+			    </table>
+			    </font>
+			  </div>
+			</p>			  
+			
+		      </section>
+		      <section>
+			<h2>Dead links met random jump</h2>
+			<p>
+			<p>
+			  <div style="float: left; width: 50%">
+			    <img src="gfx/pagerankdeadnode.svg"/>
+			  </div>
+			  <div style="float: right; width: 50%">
+			    <font size="5">
+			    <table>
+			      <thead>
+				<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+			      </thead>
+			      <tbody>
+				<tr><td>1</td><td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0.01 </td></tr>
+				<tr><td>2</td><td> 0.06 </td> <td> 0.06 </td> <td> 0.06 </td> <td> 0.06 </td> <td> 0.06 </td></tr>
+				<tr><td>3</td><td> 0.07 </td> <td> 0.08 </td> <td> 0.1 </td> <td> 0.1 </td> <td> 0.12 </td></tr>
+				<tr><td>4</td><td> 0.08 </td> <td> 0.09 </td> <td> 0.12 </td> <td> 0.11 </td> <td> 0.15 </td></tr>
+				<tr><td>5</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.11 </td> <td> 0.16 </td></tr>
+				<tr><td>6</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.12 </td> <td> 0.17 </td></tr>
+				<tr><td>7</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.12 </td> <td> 0.17 </td></tr>
+				<tr><td>8</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.12 </td> <td> 0.17 </td></tr>
+				<tr><td>9</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.12 </td> <td> 0.17 </td></tr>
+				<tr><td>10</td><td> 0.09 </td> <td> 0.09 </td> <td> 0.13 </td> <td> 0.12 </td> <td> 0.17 </td></tr>
+			      </tbody>
+			    </table>
+			    </font>
+			  </div>
+			</p>			  
+			
+		      </section>
+
+		      		      <section>
+			<h2>Spider trap</h2>
+			<p>
+			<p>
+			  <div style="float: left; width: 50%">
+			    <img src="gfx/pagerankspidertrap.svg"/>
+			  </div>
+			  <div class="fragment" style="float: right; width: 50%">
+			    <font size="5">
+			    <table>
+			      <thead>
+				<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+			      </thead>
+			      <tbody>
+				<tr><td>1</td><td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td> <td> 0.2 </td></tr>
+<tr><td>2</td><td> 0.07 </td> <td> 0.3 </td> <td> 0.37 </td> <td> 0.17 </td> <td> 0.1 </td></tr>
+<tr><td>3</td><td> 0.03 </td> <td> 0.33 </td> <td> 0.48 </td> <td> 0.07 </td> <td> 0.08 </td></tr>
+<tr><td>4</td><td> 0.03 </td> <td> 0.35 </td> <td> 0.54 </td> <td> 0.04 </td> <td> 0.03 </td></tr>
+<tr><td>5</td><td> 0.01 </td> <td> 0.36 </td> <td> 0.58 </td> <td> 0.02 </td> <td> 0.02 </td></tr>
+<tr><td>6</td><td> 0.01 </td> <td> 0.37 </td> <td> 0.6 </td> <td> 0.01 </td> <td> 0.01 </td></tr>
+<tr><td>7</td><td> 0 </td> <td> 0.37 </td> <td> 0.61 </td> <td> 0.01 </td> <td> 0.01 </td></tr>
+<tr><td>8</td><td> 0 </td> <td> 0.38 </td> <td> 0.61 </td> <td> 0 </td> <td> 0 </td></tr>
+<tr><td>9</td><td> 0 </td> <td> 0.38 </td> <td> 0.62 </td> <td> 0 </td> <td> 0 </td></tr>
+				<tr><td>10</td><td> 0 </td> <td> 0.38 </td> <td> 0.62 </td> <td> 0 </td> <td> 0 </td></tr>
+				
+			      </tbody>
+			    </table>
+			    </font>
+			  </div>
+			</p>			  
+			
+		      </section>
+
+		    </section>
+		    <section>
+		      <section><h1>PageRank - algoritme</h1></section>
+		      <section>
+			<h2>Pagerank: algoritme</h2>
+			<p>PageRank: een combinatie van de kans dat iemand via de random jump probability op een node uitkomt, en de kans dat iemand via een link op een node uitkomt. </p>
+			<p>De eerste kans wordt berekend als: <em>kans op random jump X kans op die node</em>.</p><p> De tweede kans wordt berekend als <em>(1 - kans op random jump) X PageRank van in-nodes</em>.</p>
+		      </section>
+		      <section>
+			<h2>Pagerank: formulering</h2>
+			<span class="math display">
+			  \[P(n) = a \left(\frac{1}{|G|}\right) + (1-a) \left(\sum_{m \in L(n)}^{} \frac{P(m)}{C(m)}\right) \]
+			</span>
+			<table>
+			  <tr>
+			    <td>probability: <em>random jump</em></td>
+			    <td> <span class="math display">\[a\]</span></td>
+			  </tr>
+			  <tr>
+			    <td>probability: node na random jump</td>
+			    <td><span class="math display">\[\frac{1}{|G|}\]</span></td>
+			  </tr>
+			  <tr>
+			    <td>PageRank in-nodes</td>
+			    <td><span class="math display">\[\sum_{m \in L(n)}^{} \frac{P(m)}{C(m)}\]</span></td>
+			  </tr>
+			</table>
+		      </section>
+		    </section>
+		    <section>
+		      <section><h1>HITS: Hyperlink-Induced Topic Search</h1></section>
+		      <section>
+			<h2>Hyperlink-Induced Topic Search</h2>
+			<table>
+			  <thead>
+			    <tr><th>PageRank</th><th>HITS</th></tr>
+			  </thead>
+			  <tbody>
+			    <tr><td>Google</td><td>Yahoo</td></tr>
+			    <tr><td>Offline</td><td>Online</td></tr>
+			    <tr><td>Gericht op ranking</td><td>Gericht op search</td></tr>
+			    <tr><td>PageRank score</td><td>HUB score en Authority score</td></tr>
+			  </tbody>
+			</table>			
+		      </section>
+		      <section>
+			<h2>HITS intuitie</h2>
+			<p>
+			<p>Sommige pagina’s vooral een rol hebben als doorverwijzers (<em>directories</em>, in HITS: <em>hubs</em>), andere vooral als content-providers (in HITS: <em>authorities</em>).</p>
+			<p>PageRank wordt toegepast op een geheel netwerk; HITS wordt juist toegepast op een klein deel van een netwerk. Meestal worden eerst relevante nodes geselecteerd voor een zoekopdracht, en worden aan die <em>root set</em> alle nodes toegevoegd die naar de root set verwijzen: <em>base set</em>.</p>
+			</p>
+		      </section>
+		      <section>
+			<h2>HITS algoritme</h2>
+			<p>Het algoritme is grofweg (bron: <a href="http://en.wikipedia.org/wiki/HITS_algorithm#Algorithm">Wikipedia</a>):</p>
+			<ol style="list-style-type: decimal">
+			  <li>Start with each node having a hub score and authority score of 1.</li>
+			  <li>Run the <code>Authority Update</code> Rule (node krijgt inkomende Hub-scores).</li>
+			  <li>Run the <code>Hub Update</code> Rule (node krijgt uitgaande Authority-scores).</li>
+			  <li>Normalize the values by dividing each Hub (Authority) score by the sum of the squares of all Hub (Authority) scores.</li>
+			  <li>Repeat from the second step as necessary.</li>
+			</ol>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - begin</h2>
+			<img class="stretch" src="gfx/hits_1_1.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - Authority update 1</h2>
+			<img class="stretch" src="gfx/hits_1_auth.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - HUB update 1</h2>
+			<img class="stretch" src="gfx/hits_1_hub.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - normalizatie</h2>
+			<img class="stretch" src="gfx/hits_1_normalization.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - Authority update 2</h2>
+			<img class="stretch" src="gfx/hits_2_auth.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - HUB update 2</h2>
+			<img class="stretch" src="gfx/hits_2_hub.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - normalizatie</h2>
+			<img class="stretch" src="gfx/hits_2_normalization.png"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - begin</h2>
+			<img class="stretch" src="gfx/hits1.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 1</h2>
+			<img class="stretch" src="gfx/hits2.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 2</h2>
+			<img class="stretch" src="gfx/hits3.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 3</h2>
+			<img class="stretch" src="gfx/hits4.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 4</h2>
+			<img class="stretch" src="gfx/hits5.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 5</h2>
+			<img class="stretch" src="gfx/hits6.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie - iteratie 6</h2>
+			<img class="stretch" src="gfx/hits7.svg"/>
+		      </section>
+		      <section>
+			<h2>HITS illustratie: authority</h2>
+			<p>
+			  Nodes D en C krijgen de meeste verwijzingen / binnenkomend verkeer / ballen aangespeeld.
+			</p>
+			<div style="float: left; width: 45%">
+			  <img width="450px" class="stretch" src="gfx/hits10_a.svg"/>
+			</div>
+			<div style="float: right; width: 55%">
+			  <img width="450px" class="stretch" src="gfx/nijmegen.png"/>
+			</div>
+		      </section>
+		      <section>
+			<h2>HITS illustratie: HUB</h2>
+			<p>
+			  Nodes E, A, C verwijzen het meeste / verbindingen / ballen doorgespeeld.
+			</p>
+			<div style="float: left; width: 45%">
+			  <img width="450px" class="stretch" src="gfx/hits10_h.svg"/>
+			</div>
+			<div style="float: right; width: 55%">
+			  <img width="450px" class="stretch" src="gfx/nijmegen.png"/>
+			</div>
+		      </section>
+		      <section>
+			<h2>Praktisch nut</h2>
+			<p>
+			  HITS wordt praktisch niet vaak meer gebruikt voor WebSearch - PageRank (en collega's) blijken krachtiger te zijn. Maar in sommige domeinen nog wel: bijvoorbeeld voor <a href="https://www.inf.u-szeged.hu/~csendes/saci13107.pdf">wijnkenners</a>.</p>
+			<img class="stretch" src="gfx/googlehits.png"/>
+		      </section>
+		    </section>
+		    <section>
+		      <h2>Verwerking</h2>
+		      <p>Netwerkstructuren worden steeds belangrijkere datastructuren.</p>
+		      <p>Bijna alle dat soort structuren vallen onder "Big" data</p>
+		      <p>We gaan oefenen met het oefenen van de oer-big data technologie (MapReduce) en dat toepassen op netwerkstructuren.</p>
+		    </section>
+		      
+			  
+		  </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+		  // More info about config & dependencies:
+		  // - https://github.com/hakimel/reveal.js#configuration
+		  // - https://github.com/hakimel/reveal.js#dependencies
+		  Reveal.initialize({
+		  math: {
+					// mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+		  dependencies: [
+		  { src: 'plugin/markdown/marked.js' },
+		  { src: 'plugin/math/math.js', async: true },
+		  
+		  { src: 'plugin/markdown/markdown.js' },
+		  { src: 'plugin/notes/notes.js', async: true },
+		  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		  ]
+		  });
+		</script>
+	</body>
+</html>
